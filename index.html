@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda de Paquetes</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .paquete { border: 1px solid #ccc; background: #fff; padding: 15px; margin: 10px 0; }
+        .formulario { background: #e9f5ff; padding: 20px; border: 1px solid #0099cc; }
+        input, select, textarea { width: 100%; margin-bottom: 10px; padding: 8px; }
+        button { padding: 10px 15px; background: #0099cc; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>Catálogo de Paquetes</h1>
+
+    <!-- Catálogo -->
+    <div class="paquete">
+        <h2>Paquete Básico</h2>
+        <p>Incluye productos A, B y C.</p>
+        <p><strong>Precio:</strong> $200</p>
+    </div>
+
+    <div class="paquete">
+        <h2>Paquete Premium</h2>
+        <p>Incluye productos A, B, C, D y E.</p>
+        <p><strong>Precio:</strong> $450</p>
+    </div>
+
+    <!-- Formulario -->
+    <h2>Formulario de Pedido</h2>
+    <form class="formulario" action="https://formspree.io/f/myzjjrpg" method="POST">
+        <input type="hidden" name="_next" value="gracias.html">
+
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="direccion">Dirección de envío:</label>
+        <textarea id="direccion" name="direccion" required></textarea>
+
+        <label for="paquete">Selecciona tu paquete:</label>
+        <select id="paquete" name="paquete" required>
+            <option value="basico">Paquete Básico</option>
+            <option value="premium">Paquete Premium</option>
+        </select>
+
+        <label for="telefono">Teléfono de contacto:</label>
+        <input type="tel" id="telefono" name="telefono" required>
+
+        <button type="submit">Realizar Pedido</button>
+    </form>
+
+</body>
+</html>
