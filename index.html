@@ -1,56 +1,242 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Tienda de Paquetes</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
-        .paquete { border: 1px solid #ccc; background: #fff; padding: 15px; margin: 10px 0; }
-        .formulario { background: #e9f5ff; padding: 20px; border: 1px solid #0099cc; }
-        input, select, textarea { width: 100%; margin-bottom: 10px; padding: 8px; }
-        button { padding: 10px 15px; background: #0099cc; color: white; border: none; cursor: pointer; }
-    </style>
+  <meta charset="UTF-8" />
+  <title>PETMATCH - Tienda de Paquetes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #f0f8ff, #d0ecf6);
+      padding: 40px 20px;
+    }
+
+    .contenedor {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #6dd5ed, #2193b0);
+      color: white;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo {
+      height: 70px;
+      margin-right: 20px;
+      border-radius: 8px;
+      background: white;
+      padding: 5px;
+    }
+
+    .titulo h1 {
+      font-size: 2rem;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    .titulo p {
+      margin: 4px 0 0;
+      font-size: 1rem;
+      color: #eaf7ff;
+      font-style: italic;
+    }
+
+    h2 {
+      color: #2193b0;
+    }
+
+    /* Paquete ahora es clickeable */
+    .paquete {
+      border: 1px solid #ccc;
+      background: #fefefe;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: box-shadow 0.3s, transform 0.3s;
+      user-select: none;
+    }
+
+    .paquete:hover {
+      box-shadow: 0 6px 18px rgba(33, 147, 176, 0.4);
+      transform: translateY(-4px);
+    }
+
+    /* Formulario minimalista */
+    .formulario {
+      background: none;
+      padding: 20px 0;
+      border: none;
+      border-radius: 0;
+      margin-top: 30px;
+      display: none;
+      opacity: 0;
+      animation: fadeIn 0.8s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .formulario label {
+      font-weight: 500;
+      margin-top: 10px;
+      display: block;
+      color: #333;
+    }
+
+    .input-icon {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-icon svg {
+      position: absolute;
+      top: 50%;
+      left: 8px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      fill: #999;
+      pointer-events: none;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 8px 10px 36px;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      background: transparent;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+      color: #222;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #bbb;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-bottom: 2px solid #0099cc;
+      color: #000;
+    }
+
+    button {
+      padding: 12px 20px;
+      background: transparent;
+      color: #0099cc;
+      border: 2px solid #0099cc;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #0099cc;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .logo {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="contenedor">
+    <header>
+      <a href="index.html">
+        <img src="logo.png" alt="PETMATCH Logo" class="logo" />
+      </a>
+      <div class="titulo">
+        <h1>PETMATCH</h1>
+        <p>Tu tienda de paquetes para mascotas</p>
+      </div>
+    </header>
 
-    <h1>Catálogo de Paquetes</h1>
+    <h2>Catálogo de Paquetes</h2>
 
-    <!-- Catálogo -->
-    <div class="paquete">
-        <h2>Paquete Básico</h2>
-        <p>Incluye productos A, B y C.</p>
-        <p><strong>Precio:</strong> $200</p>
+    <div class="paquete" onclick="mostrarFormulario('basico')">
+      <h3>Paquete Básico</h3>
+      <p>Incluye productos A, B y C.</p>
+      <p><strong>Precio:</strong> $200</p>
     </div>
 
-    <div class="paquete">
-        <h2>Paquete Premium</h2>
-        <p>Incluye productos A, B, C, D y E.</p>
-        <p><strong>Precio:</strong> $450</p>
+    <div class="paquete" onclick="mostrarFormulario('premium')">
+      <h3>Paquete Premium</h3>
+      <p>Incluye productos A, B, C, D y E.</p>
+      <p><strong>Precio:</strong> $450</p>
     </div>
 
-    <!-- Formulario -->
-    <h2>Formulario de Pedido</h2>
-    <form class="formulario" action="https://formspree.io/f/myzjjrpg" method="POST">
-        <input type="hidden" name="_next" value="gracias.html">
+    <form id="formulario" class="formulario" action="https://formspree.io/f/myzjjrpg" method="POST">
+      <input type="hidden" name="_next" value="gracias.html" />
 
-        <label for="nombre">Nombre completo:</label>
-        <input type="text" id="nombre" name="nombre" required>
+      <h2>Formulario de Pedido</h2>
 
-        <label for="direccion">Dirección de envío:</label>
-        <textarea id="direccion" name="direccion" required></textarea>
+      <label for="nombre">Nombre completo:</label>
+      <div class="input-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required />
+      </div>
 
-        <label for="paquete">Selecciona tu paquete:</label>
+      <label for="direccion">Dirección de envío:</label>
+      <div class="input-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <textarea id="direccion" name="direccion" placeholder="Tu dirección" required></textarea>
+      </div>
+
+      <label for="paquete">Selecciona tu paquete:</label>
+      <div class="input-icon">
+        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
         <select id="paquete" name="paquete" required>
-            <option value="basico">Paquete Básico</option>
-            <option value="premium">Paquete Premium</option>
+          <option value="">Selecciona...</option>
+          <option value="basico">Paquete Básico</option>
+          <option value="premium">Paquete Premium</option>
         </select>
+      </div>
 
-        <label for="telefono">Teléfono de contacto:</label>
-        <input type="tel" id="telefono" name="telefono" required>
+      <label for="telefono">Teléfono de contacto:</label>
+      <div class="input-icon">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C9.61 21.5 2.5 14.39 2.5 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.14 1.11z"/></svg>
+        <input type="tel" id="telefono" name="telefono" placeholder="Tu teléfono" required />
+      </div>
 
-        <button type="submit">Realizar Pedido</button>
+      <button type="submit">Realizar Pedido</button>
     </form>
+  </div>
 
+  <script>
+    function mostrarFormulario(paqueteSeleccionado) {
+      const formulario = document.getElementById("formulario");
+      const selector = document.getElementById("paquete");
+
+      formulario.style.display = "block";
+      selector.value = paqueteSeleccionado;
+      formulario.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
 </body>
 </html>
