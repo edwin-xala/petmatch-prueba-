@@ -1,131 +1,139 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Formulario de Pedido - PETMATCH</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PETMATCH - Tu tienda de paquetes para mascotas</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f8fb;
       margin: 0;
-      padding: 0;
+      background-color: #f0f4f8;
     }
 
     header {
-      background: #0077cc;
+      background-color: #007BFF;
       color: white;
+      padding: 15px 20px;
       display: flex;
       align-items: center;
-      padding: 20px;
     }
 
-    .logo {
+    header img {
       height: 100px;
       margin-right: 15px;
     }
 
-    .titulo {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .titulo h1 {
-      margin: 0;
+    header h1 {
       font-size: 24px;
-    }
-
-    .titulo p {
       margin: 0;
-      font-size: 14px;
-      color: #d6ecff;
     }
 
-    .contenedor {
-      max-width: 600px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    .catalogo {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 6px;
+    .paquete {
+      background: white;
       border: 1px solid #ccc;
-      font-size: 14px;
-    }
-
-    button {
-      background: #0077cc;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      margin-top: 20px;
-      font-size: 16px;
-      border-radius: 6px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       cursor: pointer;
-      width: 100%;
+      transition: transform 0.2s;
     }
 
-    button:hover {
-      background: #005fa3;
+    .paquete:hover {
+      transform: scale(1.03);
+    }
+
+    .paquete img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .paquete-content {
+      padding: 15px;
+    }
+
+    .paquete h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .paquete p {
+      margin: 5px 0;
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 32px;
+      background-color: #25d366;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .whatsapp:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
 <body>
 
+  <!-- Encabezado -->
   <header>
-    <img src="logo.png" alt="Logo de PETMATCH" class="logo">
-    <div class="titulo">
-      <h1>PETMATCH</h1>
-      <p>Más que moda, un vínculo</p>
-    </div>
+    <img src="logo.png" alt="Logo PETMATCH" />
+    <h1>PETMATCH - Más que moda, un vínculo</h1>
   </header>
 
-  <div class="contenedor">
-    <h2>Formulario de Pedido</h2>
+  <!-- Catálogo de Paquetes -->
+  <section class="catalogo">
+    <div class="paquete" onclick="abrirFormulario('DEPORTIVO')">
+      <img src="deportivo.jpg" alt="Paquete Deportivo" />
+      <div class="paquete-content">
+        <h2>DEPORTIVO</h2>
+        <p>Incluye arnés ligero, pelota con cuerda y bebedero portátil.</p>
+        <p><strong>Precio:</strong> $350</p>
+      </div>
+    </div>
 
-    <form action="https://formspree.io/f/myzjjrpg" method="POST">
-      <input type="hidden" name="_next" value="gracias.html">
+    <div class="paquete" onclick="abrirFormulario('VERANO')">
+      <img src="verano.jpg" alt="Paquete Verano" />
+      <div class="paquete-content">
+        <h2>VERANO</h2>
+        <p>Gafas solares para perro, pañuelo refrescante y crema para patas.</p>
+        <p><strong>Precio:</strong> $420</p>
+      </div>
+    </div>
 
-      <label for="nombre">Nombre completo:</label>
-      <input type="text" id="nombre" name="nombre" required>
+    <div class="paquete" onclick="abrirFormulario('INVIERNO')">
+      <img src="invierno.jpg" alt="Paquete Invierno" />
+      <div class="paquete-content">
+        <h2>INVIERNO</h2>
+        <p>Abrigo térmico, botas antideslizantes y manta suave.</p>
+        <p><strong>Precio:</strong> $480</p>
+      </div>
+    </div>
+  </section>
 
-      <label for="direccion">Dirección de envío:</label>
-      <textarea id="direccion" name="direccion" required></textarea>
+  <!-- Botón WhatsApp -->
+  <a href="https://wa.me/5215542009790" class="whatsapp" target="_blank" title="Contáctanos por WhatsApp">💬</a>
 
-      <label for="telefono">Teléfono de contacto:</label>
-      <input type="tel" id="telefono" name="telefono" required>
-
-      <label for="paquete">Paquete seleccionado:</label>
-      <input type="text" id="paquete" name="paquete" readonly required>
-
-      <button type="submit">Enviar pedido</button>
-    </form>
-  </div>
-
+  <!-- Script para redirigir al formulario -->
   <script>
-    // Obtener el paquete desde la URL y ponerlo en el campo
-    const params = new URLSearchParams(window.location.search);
-    const paquete = params.get('paquete');
-    if (paquete) {
-      document.getElementById('paquete').value = paquete;
+    function abrirFormulario(paquete) {
+      window.location.href = "formulario.html?paquete=" + encodeURIComponent(paquete);
     }
   </script>
-
 </body>
 </html>
