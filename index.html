@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>PETMATCH</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PETMATCH - Tu tienda de paquetes para mascotas</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background-color: #f4f4f4;
+      background-color: #f0f4f8;
     }
 
     header {
-      background-color: #007acc;
+      background-color: #007BFF;
       color: white;
-      padding: 20px;
+      padding: 15px 20px;
       display: flex;
       align-items: center;
     }
@@ -24,122 +25,115 @@
     }
 
     header h1 {
-      margin: 0;
       font-size: 24px;
+      margin: 0;
     }
 
-    header p {
-      margin: 5px 0 0;
-      font-size: 14px;
-      color: #cceeff;
-    }
-
-    .contenedor {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+    .catalogo {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
 
     .paquete {
-      background: #fff;
+      background: white;
       border: 1px solid #ccc;
-      padding: 20px;
-      margin-bottom: 20px;
       border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: fadeInUp 0.8s ease forwards;
-      opacity: 0;
+      transition: transform 0.2s;
     }
 
     .paquete:hover {
       transform: scale(1.03);
-      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
     }
-
-    .paquete:nth-child(1) { animation-delay: 0.1s; }
-    .paquete:nth-child(2) { animation-delay: 0.3s; }
-    .paquete:nth-child(3) { animation-delay: 0.5s; }
 
     .paquete img {
       width: 100%;
-      border-radius: 8px;
-      margin-bottom: 15px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .paquete-content {
+      padding: 15px;
     }
 
     .paquete h2 {
-      margin: 0 0 10px;
-      color: #007acc;
+      margin-top: 0;
+      font-size: 20px;
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .paquete p {
+      margin: 5px 0;
     }
 
-    /* Botón de WhatsApp */
     .whatsapp {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #25D366;
+      font-size: 32px;
+      background-color: #25d366;
       color: white;
-      padding: 12px 16px;
-      border-radius: 50px;
+      padding: 10px 14px;
+      border-radius: 50%;
       text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
     }
 
     .whatsapp:hover {
-      background-color: #1ebe5d;
+      transform: scale(1.1);
     }
   </style>
 </head>
 <body>
 
+  <!-- Encabezado -->
   <header>
-    <img src="logo.png" alt="Logo PETMATCH">
-    <div>
-      <h1>PETMATCH</h1>
-      <p>Más que moda, un vínculo</p>
-    </div>
+    <img src="logo.png" alt="Logo PETMATCH" />
+    <h1>PETMATCH - Más que moda, un vínculo</h1>
   </header>
 
-  <div class="contenedor">
-
-    <div class="paquete" onclick="abrirFormulario('deportivo')">
-      <img src="deportivo.jpg" alt="Paquete Deportivo">
-      <h2>Paquete DEPORTIVO</h2>
-      <p>Incluye ropa y accesorios deportivos para mascotas activas. Comodidad, estilo y funcionalidad en uno solo.</p>
-      <strong>Precio: $300</strong>
+  <!-- Catálogo de Paquetes -->
+  <section class="catalogo">
+    <div class="paquete" onclick="abrirFormulario('DEPORTIVO')">
+      <img src="deportivo.jpg" alt="Paquete Deportivo" />
+      <div class="paquete-content">
+        <h2>DEPORTIVO</h2>
+        <p>Incluye arnés ligero, pelota con cuerda y bebedero portátil.</p>
+        <p><strong>Precio:</strong> $350</p>
+      </div>
     </div>
 
-    <div class="paquete" onclick="abrirFormulario('verano')">
-      <img src="verano.jpg" alt="Paquete Verano">
-      <h2>Paquete VERANO</h2>
-      <p>Ideal para el calor: ropa ligera, gafas, sombrero y botella portátil. ¡Aventuras bajo el sol con estilo!</p>
-      <strong>Precio: $350</strong>
+    <div class="paquete" onclick="abrirFormulario('VERANO')">
+      <img src="verano.jpg" alt="Paquete Verano" />
+      <div class="paquete-content">
+        <h2>VERANO</h2>
+        <p>Gafas solares para perro, pañuelo refrescante y crema para patas.</p>
+        <p><strong>Precio:</strong> $420</p>
+      </div>
     </div>
 
-    <div class="paquete" onclick="abrirFormulario('invierno')">
-      <img src="invierno.jpg" alt="Paquete Invierno">
-      <h2>Paquete INVIERNO</h2>
-      <p>Abrigos, botas y cobijas para mantener a tu mascota cálida durante el frío. Protección y ternura.</p>
-      <strong>Precio: $380</strong>
+    <div class="paquete" onclick="abrirFormulario('INVIERNO')">
+      <img src="invierno.jpg" alt="Paquete Invierno" />
+      <div class="paquete-content">
+        <h2>INVIERNO</h2>
+        <p>Abrigo térmico, botas antideslizantes y manta suave.</p>
+        <p><strong>Precio:</strong> $480</p>
+      </div>
     </div>
+  </section>
 
-  </div>
+  <!-- Botón WhatsApp -->
+  <a href="https://wa.me/5215542009790" class="whatsapp" target="_blank" title="Contáctanos por WhatsApp">💬</a>
 
-  <!-- Botón de WhatsApp -->
-  <a class="whatsapp" href="https://wa.me/5215542009790" target="_blank">¡Escríbenos!</a>
-
+  <!-- Script para redirigir al formulario -->
   <script>
     function abrirFormulario(paquete) {
-      window.location.href = `formulario-${paquete}.html`;
+      window.location.href = "formulario.html?paquete=" + encodeURIComponent(paquete);
     }
   </script>
-
 </body>
 </html>
