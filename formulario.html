@@ -53,6 +53,14 @@
       font-size: 14px;
     }
 
+    .descripcion {
+      background-color: #e6f4ff;
+      border-left: 4px solid #007acc;
+      padding: 10px;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
     button {
       width: 100%;
       background-color: #007acc;
@@ -79,6 +87,11 @@
 
     <h2>Formulario de Pedido</h2>
 
+    <!-- Descripción del paquete -->
+    <div class="descripcion" id="descripcionPaquete">
+      <!-- Aquí se mostrará la descripción del paquete seleccionado -->
+    </div>
+
     <form action="https://formspree.io/f/myzjjrpg" method="POST">
       <input type="hidden" name="_next" value="gracias.html">
       
@@ -99,10 +112,15 @@
   </div>
 
   <script>
-    // Obtener el paquete desde localStorage y colocarlo en el campo del formulario
-    const paqueteSeleccionado = localStorage.getItem("paqueteSeleccionado");
-    if (paqueteSeleccionado) {
-      document.getElementById("paquete").value = paqueteSeleccionado;
+    const paquete = localStorage.getItem("paqueteSeleccionado");
+    const descripcion = localStorage.getItem("descripcionPaquete");
+
+    if (paquete) {
+      document.getElementById("paquete").value = paquete;
+    }
+
+    if (descripcion) {
+      document.getElementById("descripcionPaquete").textContent = descripcion;
     }
   </script>
 </body>
