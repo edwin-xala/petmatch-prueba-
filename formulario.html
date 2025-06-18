@@ -1,131 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Formulario de Pedido - PETMATCH</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f8fb;
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
       margin: 0;
       padding: 0;
     }
 
-    header {
-      background: #0077cc;
-      color: white;
-      display: flex;
-      align-items: center;
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
       padding: 20px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
     }
 
     .logo {
-      height: 100px;
-      margin-right: 15px;
-    }
-
-    .titulo {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
     }
 
-    .titulo h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-
-    .titulo p {
-      margin: 0;
-      font-size: 14px;
-      color: #d6ecff;
-    }
-
-    .contenedor {
-      max-width: 600px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    .logo img {
+      width: 100px;
     }
 
     h2 {
       text-align: center;
       margin-bottom: 20px;
+      color: #007acc;
     }
 
     label {
       display: block;
-      margin-top: 15px;
+      margin-bottom: 5px;
       font-weight: bold;
     }
 
-    input, textarea, select {
+    input, select, textarea {
       width: 100%;
       padding: 10px;
-      margin-top: 5px;
-      border-radius: 6px;
+      margin-bottom: 15px;
       border: 1px solid #ccc;
+      border-radius: 5px;
       font-size: 14px;
     }
 
     button {
-      background: #0077cc;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      margin-top: 20px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
       width: 100%;
+      background-color: #007acc;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
 
     button:hover {
-      background: #005fa3;
+      background-color: #005e99;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="logo.png" alt="Logo de PETMATCH" class="logo">
-    <div class="titulo">
-      <h1>PETMATCH</h1>
-      <p>Más que moda, un vínculo</p>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="Logo PETMATCH">
     </div>
-  </header>
 
-  <div class="contenedor">
     <h2>Formulario de Pedido</h2>
 
     <form action="https://formspree.io/f/myzjjrpg" method="POST">
       <input type="hidden" name="_next" value="gracias.html">
-
+      
       <label for="nombre">Nombre completo:</label>
       <input type="text" id="nombre" name="nombre" required>
 
       <label for="direccion">Dirección de envío:</label>
       <textarea id="direccion" name="direccion" required></textarea>
 
-      <label for="telefono">Teléfono de contacto:</label>
-      <input type="tel" id="telefono" name="telefono" required>
-
       <label for="paquete">Paquete seleccionado:</label>
       <input type="text" id="paquete" name="paquete" readonly required>
+
+      <label for="telefono">Teléfono de contacto:</label>
+      <input type="tel" id="telefono" name="telefono" required>
 
       <button type="submit">Enviar pedido</button>
     </form>
   </div>
 
   <script>
-    // Obtener el paquete desde la URL y ponerlo en el campo
-    const params = new URLSearchParams(window.location.search);
-    const paquete = params.get('paquete');
-    if (paquete) {
-      document.getElementById('paquete').value = paquete;
+    // Obtener el paquete desde localStorage y colocarlo en el campo del formulario
+    const paqueteSeleccionado = localStorage.getItem("paqueteSeleccionado");
+    if (paqueteSeleccionado) {
+      document.getElementById("paquete").value = paqueteSeleccionado;
     }
   </script>
-
 </body>
 </html>
