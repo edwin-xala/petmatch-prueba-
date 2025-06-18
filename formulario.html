@@ -1,127 +1,131 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Formulario de Pedido - PETMATCH</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f9f9f9;
+      font-family: Arial, sans-serif;
+      background: #f4f8fb;
       margin: 0;
       padding: 0;
     }
 
-    .container {
-      max-width: 500px;
-      margin: 40px auto;
+    header {
+      background: #0077cc;
+      color: white;
+      display: flex;
+      align-items: center;
       padding: 20px;
-      background: white;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
+      height: 100px;
+      margin-right: 15px;
     }
 
-    .logo img {
-      width: 100px;
+    .titulo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .titulo h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .titulo p {
+      margin: 0;
+      font-size: 14px;
+      color: #d6ecff;
+    }
+
+    .contenedor {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
 
     h2 {
       text-align: center;
       margin-bottom: 20px;
-      color: #007acc;
     }
 
     label {
       display: block;
-      margin-bottom: 5px;
+      margin-top: 15px;
       font-weight: bold;
     }
 
-    input, select, textarea {
+    input, textarea, select {
       width: 100%;
       padding: 10px;
-      margin-bottom: 15px;
+      margin-top: 5px;
+      border-radius: 6px;
       border: 1px solid #ccc;
-      border-radius: 5px;
       font-size: 14px;
     }
 
-    .descripcion {
-      background-color: #e6f4ff;
-      border-left: 4px solid #007acc;
-      padding: 10px;
-      margin-bottom: 20px;
-      font-style: italic;
-    }
-
     button {
-      width: 100%;
-      background-color: #007acc;
+      background: #0077cc;
       color: white;
-      padding: 12px;
       border: none;
-      border-radius: 5px;
+      padding: 12px 20px;
+      margin-top: 20px;
       font-size: 16px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      width: 100%;
     }
 
     button:hover {
-      background-color: #005e99;
+      background: #005fa3;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="logo">
-      <img src="logo.png" alt="Logo PETMATCH">
+  <header>
+    <img src="logo.png" alt="Logo de PETMATCH" class="logo">
+    <div class="titulo">
+      <h1>PETMATCH</h1>
+      <p>Más que moda, un vínculo</p>
     </div>
+  </header>
 
+  <div class="contenedor">
     <h2>Formulario de Pedido</h2>
-
-    <!-- Descripción del paquete -->
-    <div class="descripcion" id="descripcionPaquete">
-      <!-- Aquí se mostrará la descripción del paquete seleccionado -->
-    </div>
 
     <form action="https://formspree.io/f/myzjjrpg" method="POST">
       <input type="hidden" name="_next" value="gracias.html">
-      
+
       <label for="nombre">Nombre completo:</label>
       <input type="text" id="nombre" name="nombre" required>
 
       <label for="direccion">Dirección de envío:</label>
       <textarea id="direccion" name="direccion" required></textarea>
 
-      <label for="paquete">Paquete seleccionado:</label>
-      <input type="text" id="paquete" name="paquete" readonly required>
-
       <label for="telefono">Teléfono de contacto:</label>
       <input type="tel" id="telefono" name="telefono" required>
+
+      <label for="paquete">Paquete seleccionado:</label>
+      <input type="text" id="paquete" name="paquete" readonly required>
 
       <button type="submit">Enviar pedido</button>
     </form>
   </div>
 
   <script>
-    const paquete = localStorage.getItem("paqueteSeleccionado");
-    const descripcion = localStorage.getItem("descripcionPaquete");
-
+    // Obtener el paquete desde la URL y ponerlo en el campo
+    const params = new URLSearchParams(window.location.search);
+    const paquete = params.get('paquete');
     if (paquete) {
-      document.getElementById("paquete").value = paquete;
-    }
-
-    if (descripcion) {
-      document.getElementById("descripcionPaquete").textContent = descripcion;
+      document.getElementById('paquete').value = paquete;
     }
   </script>
+
 </body>
 </html>
